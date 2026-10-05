@@ -1,0 +1,182 @@
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               3600
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Generic callback                                 0x60
+1 of 1 MIP starts provided solutions.
+MIP start 'm1' defined initial solution with objective 134.0744.
+Tried aggregator 2 times.
+MIP Presolve eliminated 40 rows and 26 columns.
+MIP Presolve modified 246 coefficients.
+Aggregator did 14 substitutions.
+Reduced MIP has 1523 rows, 1560 columns, and 10267 nonzeros.
+Reduced MIP has 387 binaries, 373 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.01 sec. (4.14 ticks)
+Probing time = 0.00 sec. (0.53 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 1523 rows, 1560 columns, and 10267 nonzeros.
+Reduced MIP has 387 binaries, 373 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.39 ticks)
+Probing time = 0.00 sec. (0.53 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.04 sec. (40.17 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          134.0744      400.0000           198.34%
+      0     0      152.8744    23      134.0744      152.8744     1457   14.02%
+      0     0      136.3583    40      134.0744     Cuts: 406     1822    1.70%
+      0     0      135.8062    34      134.0744     Cuts: 234     1955    1.29%
+
+Repeating presolve.
+Tried aggregator 1 time.
+MIP Presolve eliminated 829 rows and 715 columns.
+MIP Presolve modified 117 coefficients.
+Reduced MIP has 694 rows, 845 columns, and 3165 nonzeros.
+Reduced MIP has 83 binaries, 66 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (2.19 ticks)
+Probing time = 0.00 sec. (0.16 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 694 rows, 845 columns, and 3165 nonzeros.
+Reduced MIP has 83 binaries, 66 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.85 ticks)
+Represolve time = 0.01 sec. (8.60 ticks)
+Probing time = 0.00 sec. (0.16 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.05 sec. (57.12 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          134.0744      135.8062             1.29%
+      0     0      135.7049    38      134.0744      135.7049     3095    1.22%
+      0     0      135.0234    42      134.0744     Cuts: 112     3258    0.71%
+      0     0      134.9159    46      134.0744      Cuts: 44     3332    0.63%
+      0     0      134.8827    44      134.0744      Cuts: 35     3361    0.60%
+      0     0      134.8516    44      134.0744      Cuts: 39     3389    0.58%
+      0     0      134.8301    44      134.0744      Cuts: 30     3408    0.56%
+      0     0      134.8149    46      134.0744      Cuts: 24     3428    0.55%
+      0     0      134.8147    44      134.0744       Cuts: 4     3432    0.55%
+      0     0      134.8119    46      134.0744      Cuts: 14     3440    0.55%
+      0     0      134.8109    46      134.0744 UserPurge2: 7     3446    0.55%
+      0     0      134.8109    46      134.0744 UserPurge2: 2     3447    0.55%
+      0     0      134.8108    46      134.0744 UserPurge2: 5     3448    0.55%
+      0     0      134.8108    46      134.0744 UserPurge2: 1     3449    0.55%
+      0     2      134.8062    46      134.0744      134.8043     3449    0.54%
+Elapsed time = 0.89 sec. (472.18 ticks, tree = 0.01 MB, solutions = 1)
+
+Flow cuts applied:  18
+Mixed integer rounding cuts applied:  93
+Lift and project cuts applied:  3
+Gomory fractional cuts applied:  4
+User cuts applied:  733
+
+Root node processing (before b&c):
+  Real time             =    0.89 sec. (471.99 ticks)
+Sequential b&c:
+  Real time             =    0.36 sec. (179.07 ticks)
+                          ------------
+Total (root+branch&cut) =    1.25 sec. (651.06 ticks)
+|V|                                     400
+K                                       10
+theta                                   0.10
+r                                       1
+R                                       20
+prob_func                               facility_mixture
+mixture_low_share                       0.100000
+mixture_low_interval                    [0.001000, 0.010000]
+mixture_high_interval                   [0.100000, 0.500000]
+mixture_seed                            1
+#C1                                     460
+#CP                                     6282
+
+@Parameters: 
+am_callback_heuristic                   false
+am_local_search                         true
+am_start_heuristic                      false
+colocation                              true
+comp                                    false
+cutC                                    true
+cutC_init                               false
+cutF                                    true
+cutF_init                               false
+cutF_stable                             false
+cutF_wrong                              false
+cutLocal                                false
+cutM                                    true
+cutM_init                               true
+cutM_stable                             false
+cutP                                    true
+cutP_init                               false
+cutP_stable                             false
+init                                    true
+init_cutF_zero                          false
+init_val_greedy                         true
+is_Euclidean                            false
+is_local_search                         false
+is_right_cutP                           true
+is_root                                 false
+is_silent                               false
+is_start                                false
+mycut                                   false
+pmed                                    false
+pre                                     true
+stable_root                             false
+str                                     false
+two_phase                               false
+ubstr                                   false
+mode                                    Int
+
+am_callback_node_space                  50
+init                                    0
+mixture_seed                            1
+node_space                              5
+nodelimit                               -1
+nsepa                                   1
+strF                                    0
+type_delta                              0
+
+EPS                                     0.001000
+EPS_FRAC                                0.00
+gap                                     0.00
+mixture_high_max                        0.50
+mixture_high_min                        0.10
+mixture_low_max                         0.01
+mixture_low_min                         0.00
+mixture_low_share                       0.10
+timelimit                               3600.00
+
+Number of Closed Sites: 13 / 130 
+Number of Confined Sites-1: 14 / 126 
+Number of Confined Sites-k: 373 / 1728 
+Preprocess Time: 0.88 + 0.00 sec
+
+Solve Time: 1.25
+Number of Nodes: 28
+Termination Status: OPTIMAL
+
+CutInfo: [phase] num / time (sec) / aver. num_nonzero
+max              [LP]     0 / 0.00 / 0.00 [init]   388 / 0.01 / 4.31 [rLC]   274 / 0.02 / 8.50 [rUC]   247 / 0.04 / 8.66 [sLC]     0 / 0.00 / 0.00 [sUC]   108 / 0.04 / 8.64 
+prod_oa          [LP]     0 / 0.00 / 0.00 [init]   388 / 0.00 / 15.57 [rLC]   394 / 0.01 / 23.57 [rUC]    87 / 0.04 / 24.82 [sLC]     0 / 0.00 / 0.00 [sUC]    38 / 0.03 / 31.00 
+prod_sm_fixed    [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]     0 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]     0 / 0.00 / 0.00 
+prod_bin         [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]     0 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]     0 / 0.00 / 0.00 
+prod_local       [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]     0 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]     0 / 0.00 / 0.00 
+prod_sm_C        [LP]     0 / 0.00 / 0.00 [init]     0 / 0.01 / 0.00 [rLC]     0 / 0.05 / 0.00 [rUC]   332 / 0.16 / 45.84 [sLC]     0 / 0.00 / 0.00 [sUC]   141 / 0.10 / 58.38 
+facet            [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]   325 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]   141 / 0.00 / 0.00 
+Separation Round:   [LP] 0  [init] 1  [rLC] 6  [rUC] 16  [sLC] 0  [sUC] 36  
+Root Best Bound 134.689270
+Root Best Integer: 134.074415
+Best Bound: 134.270029
+Best Integer: 134.074415
+1: 30, 31, 120, 141, 171, 178, 199, 325, 360, 362
+Objective Value (calc): 134.074415
+sum_etaM = 109.817275 / 109.817275
+sum_etaP = 136.769653 / 136.769653
+nL: 10
+nCL: 0
+mCL: 1

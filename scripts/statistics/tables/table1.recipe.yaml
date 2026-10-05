@@ -1,0 +1,50 @@
+# MPCLP Table 1: comparison of the integer and binary settings on testset T1.
+output:
+  directory: ../build
+
+tables:
+  - id: T1-BinInt-Table1
+    type: comparison-table
+    input: output/artifacts/inputs/t1_bin_int_table1.csv
+    output: ../build/T1-BinInt-Table1.tex
+    instance_key: instance
+    rows:
+      display_columns: [group, ndata]
+      sections:
+        - group_by: [dataset, dataset_label]
+          order: {dataset: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]}
+          values: {group: '{dataset_label}', ndata: {operation: instance_count}}
+        - group_by: [theta, theta_label]
+          order: {theta: ['0.2', '0.5', '0.8']}
+          values: {group: '{theta_label}', ndata: {operation: instance_count}}
+          # The paper leaves the variable counts of the theta summary rows empty.
+          blank_metrics: {B&C-B: [nvar], B&C-I: [nvar]}
+    cohorts:
+      all: {type: all}
+      any_solved: {type: any_method, field: solved, equals: true}
+      any_unsolved: {type: any_method, methods: [B&C-B, B&C-I], field: solved, equals: false}
+    metrics:
+      nvar: {field: nvar, aggregation: arithmetic_mean, cohort: all, label: '\tblnvar', format: integer_half_up}
+      solved: {field: solved, aggregation: count_true, cohort: all, label: '\tblnsol', format: integer}
+      time: {field: time, aggregation: arithmetic_mean, cohort: any_solved, fallback_cohort: all, label: '\tbltime', format: {type: time_with_limit_and_small_positive, limit: 3600, limit_value: '\TL', threshold: 0.1, digits: 1}}
+      nodes: {field: nodes, aggregation: arithmetic_mean, cohort: any_solved, fallback_cohort: all, label: '\tblnode', format: integer_half_up}
+      gap: {field: gap, aggregation: arithmetic_mean, cohort: any_unsolved, fallback_cohort: all, label: '\tblgap', format: {type: decimal_with_small_positive, threshold: 0.1, digits: 1}}
+      rgap: {field: rgap, aggregation: arithmetic_mean, cohort: all, label: '\tblrgap', format: {type: decimal_with_small_positive, threshold: 0.1, digits: 1}}
+    method_blocks:
+      - {method: B&C-B, label: '\testBin', metrics: [nvar, solved, time, nodes, gap, rgap]}
+      - {method: B&C-I, label: '\testInt', metrics: [nvar, solved, time, nodes, gap, rgap]}
+      - {method: AS19, label: '\testLiterature', metrics: [solved, {id: time, cohort: any_solved, fallback_cohort: all}]}
+    summary_rows:
+      - label: '\tblinstances'
+        display: {group: '\tblinstances', ndata: {operation: instance_count}}
+        keep: {B&C-B: [solved], B&C-I: [solved], AS19: [solved]}
+        before_midrule: true
+      - label: '\tblaver'
+        display: {group: '\tblaver'}
+        keep: {B&C-B: [time, nodes, gap, rgap], B&C-I: [time, nodes, gap, rgap], AS19: [time]}
+    latex:
+      column_format: 'ccrrrrrrrrrrrrrr'
+      row_labels: {group: '\tblgroup', ndata: '\tblndata'}
+      empty_value: ''
+      header: {multirow_row_labels: true, cmidrule_trim: r}
+      row_label_multicolumn: [group]

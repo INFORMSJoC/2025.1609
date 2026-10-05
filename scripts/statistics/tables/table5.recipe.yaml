@@ -1,0 +1,19 @@
+# MPCLP Table 5: literature-unsolved T1 instances solved by full B&C.
+output:
+  directory: ../build
+
+tables:
+  - id: T5-Newly-Solved-Table5
+    type: record-panel-table
+    input: output/artifacts/inputs/table5_newly_solved.csv
+    output: ../build/T5-Newly-Solved-Table5.tex
+    order_key: order
+    columns:
+      - {field: instance_id, label: '\idfull', align: c}
+      - {field: n_vertices, label: '\V', align: c, format: integer}
+      - {field: k, label: '\K', align: c, format: integer}
+      - {field: time, label: '\tbltime', align: r, format: {type: fixed, digits: 1}}
+      - {field: nodes, label: '\tblnode', align: r, format: integer}
+      - {field: objective, label: '\tblobj', align: r, format: {type: fixed, digits: 1}}
+    side_by_side: {split_after: 30, separator: '@{\hspace{20pt}}'}
+    latex: {empty_value: ''}
