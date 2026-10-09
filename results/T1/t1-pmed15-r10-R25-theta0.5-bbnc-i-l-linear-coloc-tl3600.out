@@ -1,0 +1,177 @@
+Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+CPXPARAM_Threads                                 1
+CPXPARAM_TimeLimit                               3600
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Generic callback                                 0x60
+1 of 1 MIP starts provided solutions.
+MIP start 'm1' defined initial solution with objective 281.1661.
+Tried aggregator 2 times.
+MIP Presolve eliminated 48 rows and 32 columns.
+MIP Presolve modified 119 coefficients.
+Aggregator did 16 substitutions.
+Reduced MIP has 691 rows, 1152 columns, and 2404 nonzeros.
+Reduced MIP has 284 binaries, 268 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (1.41 ticks)
+Probing time = 0.00 sec. (0.15 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 691 rows, 1152 columns, and 2404 nonzeros.
+Reduced MIP has 284 binaries, 268 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.82 ticks)
+Probing time = 0.00 sec. (0.15 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Root relaxation solution time = 0.00 sec. (1.27 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          281.1661      300.0000             6.70%
+      0     0      300.0000    12      281.1661      300.0000      205    6.70%
+      0     0      286.9215   200      281.1661     Cuts: 272      496    2.05%
+      0     0      285.2377   188      281.1661     Cuts: 272      680    1.45%
+      0     0      284.4014   200      281.1661     Cuts: 227      889    1.15%
+      0     0      283.9852   264      281.1661     Cuts: 144     1027    1.00%
+      0     0      283.7611   230      281.1661     Cuts: 131     1156    0.92%
+      0     0      283.6780   250      281.1661     Cuts: 101     1256    0.89%
+      0     0      283.6287   202      281.1661      Cuts: 87     1337    0.88%
+      0     0      283.6042   218      281.1661      Cuts: 65     1418    0.87%
+      0     0      283.5774   228      281.1661      Cuts: 57     1497    0.86%
+      0     0      283.5683   236      281.1661      Cuts: 38     1537    0.85%
+      0     0      283.5480   234      281.1661      Cuts: 43     1578    0.85%
+      0     0      283.5438   234      281.1661 UserPurge2: 13     1593    0.85%
+      0     0      283.5422   234      281.1661 UserPurge2: 20     1610    0.85%
+      0     0      283.5413   242      281.1661 UserPurge2: 14     1626    0.84%
+      0     0      283.5402   242      281.1661 UserPurge2: 6     1632    0.84%
+      0     0      283.5391   240      281.1661 UserPurge2: 14     1642    0.84%
+      0     0      283.5389   242      281.1661 UserPurge2: 5     1648    0.84%
+      0     0      283.5385   244      281.1661 UserPurge2: 4     1654    0.84%
+      0     0      283.5384   248      281.1661 UserPurge2: 1     1656    0.84%
+      0     2      283.5384   248      281.1661      283.5376     1656    0.84%
+Elapsed time = 1.01 sec. (727.25 ticks, tree = 0.01 MB, solutions = 1)
+*    20    16      integral     0      282.9732      283.5254     3967    0.20%
+     22    16      283.4367   252      282.9732      283.5246     4273    0.19%
+     41    35      283.0681   179      282.9732      283.5246     5881    0.19%
+     65    51      283.4445   264      282.9732      283.5135     7808    0.19%
+     80    62      283.4334   258      282.9732      283.4730     9645    0.18%
+     99    75      283.1557   246      282.9732      283.4578    11673    0.17%
+*   117    83      integral     0      282.9775      283.4578    12529    0.17%
+    124    90      283.1824   204      282.9775      283.4567    13228    0.17%
+*   149    64      integral     0      283.0987      283.4567    13882    0.13%
+    161    73      283.1013   178      283.0987      283.4497    14581    0.12%
+    180    84      283.1456   210      283.0987      283.4279    15760    0.12%
+    203    99      283.1695   232      283.0987      283.4250    17476    0.12%
+    289   138      283.1981   202      283.0987      283.3435    24223    0.09%
+Elapsed time = 5.80 sec. (3898.08 ticks, tree = 0.42 MB, solutions = 4)
+*   327   119      integral     0      283.1301      283.3415    25190    0.07%
+    429   144      283.2330   205      283.1301      283.2667    31275    0.05%
+    542   179      283.1450   170      283.1301      283.2267    38129    0.03%
+*   625   139      integral     0      283.1485      283.2105    41938    0.02%
+*   693    80      integral     0      283.1592      283.1927    44432    0.01%
+*   720    66      integral     0      283.1649      283.1908    45024    0.01%
+
+Flow cuts applied:  17
+Mixed integer rounding cuts applied:  27
+Gomory fractional cuts applied:  14
+User cuts applied:  1277
+
+Root node processing (before b&c):
+  Real time             =    1.01 sec. (727.33 ticks)
+Sequential b&c:
+  Real time             =    8.93 sec. (6323.22 ticks)
+                          ------------
+Total (root+branch&cut) =    9.94 sec. (7050.54 ticks)
+|V|                                     300
+K                                       100
+theta                                   0.50
+r                                       10
+R                                       25
+prob_func                               linear
+#C1                                     910
+#CP                                     3470
+
+@Parameters: 
+am_callback_heuristic                   false
+am_local_search                         true
+am_start_heuristic                      false
+colocation                              true
+comp                                    false
+cutC                                    true
+cutC_init                               false
+cutF                                    true
+cutF_init                               false
+cutF_stable                             false
+cutF_wrong                              false
+cutLocal                                false
+cutM                                    true
+cutM_init                               true
+cutM_stable                             false
+cutP                                    true
+cutP_init                               false
+cutP_stable                             false
+init                                    true
+init_cutF_zero                          false
+init_val_greedy                         true
+is_Euclidean                            false
+is_local_search                         false
+is_right_cutP                           true
+is_root                                 false
+is_silent                               false
+is_start                                false
+mycut                                   false
+pmed                                    false
+pre                                     true
+stable_root                             false
+str                                     false
+two_phase                               false
+ubstr                                   false
+mode                                    Int
+
+am_callback_node_space                  50
+init                                    0
+mixture_seed                            1
+node_space                              5
+nodelimit                               -1
+nsepa                                   1
+strF                                    0
+type_delta                              0
+
+EPS                                     0.001000
+EPS_FRAC                                0.00
+gap                                     0.00
+mixture_high_max                        0.99
+mixture_high_min                        0.90
+mixture_low_max                         0.01
+mixture_low_min                         0.00
+mixture_low_share                       0.80
+timelimit                               3600.00
+
+Number of Closed Sites: 16 / 1600 
+Number of Confined Sites-1: 16 / 1584 
+Number of Confined Sites-k: 268 / 4910 
+Preprocess Time: 0.38 + 0.00 sec
+
+Solve Time: 9.94
+Number of Nodes: 824
+Termination Status: OPTIMAL
+
+CutInfo: [phase] num / time (sec) / aver. num_nonzero
+max              [LP]     0 / 0.00 / 0.00 [init]    77 / 0.00 / 2.05 [rLC]   354 / 0.01 / 5.57 [rUC]   490 / 0.04 / 4.53 [sLC]     0 / 0.01 / 0.00 [sUC]   143 / 0.40 / 5.51 
+prod_oa          [LP]     0 / 0.00 / 0.00 [init]    77 / 0.00 / 9.66 [rLC]   353 / 0.00 / 13.12 [rUC]   117 / 0.02 / 13.75 [sLC]     0 / 0.01 / 0.00 [sUC]    65 / 0.19 / 14.69 
+prod_sm_fixed    [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]     0 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]     0 / 0.00 / 0.00 
+prod_bin         [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]     0 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]     0 / 0.00 / 0.00 
+prod_local       [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]     0 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]     0 / 0.00 / 0.00 
+prod_sm_C        [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.01 / 0.00 [rUC]   838 / 0.10 / 21.13 [sLC]     0 / 0.03 / 0.00 [sUC]   588 / 1.37 / 27.44 
+facet            [LP]     0 / 0.00 / 0.00 [init]     0 / 0.00 / 0.00 [rLC]     0 / 0.00 / 0.00 [rUC]   838 / 0.00 / 0.00 [sLC]     0 / 0.00 / 0.00 [sUC]   588 / 0.00 / 0.00 
+Separation Round:   [LP] 0  [init] 1  [rLC] 3  [rUC] 21  [sLC] 7  [sUC] 1258  
+Root Best Bound 283.526008
+Root Best Integer: 281.166102
+Best Bound: 283.166434
+Best Integer: 283.164887
+1: 2, 4, 6, 8, 10, 13, 17, 18, 21, 22, 24, 29, 32, 37, 38, 45, 46, 49, 51, 57, 61, 62, 66, 69, 73, 75, 78, 79, 81, 83, 87, 92, 99, 101, 105, 107, 126, 131, 132, 133, 134, 135, 138, 141, 142, 145, 146, 149, 156, 157, 158, 160, 161, 166, 168, 169, 171, 175, 177, 183, 185, 189, 192, 195, 199, 202, 205, 207, 209, 213, 215, 216, 220, 222, 225, 226, 227, 228, 236, 238, 241, 243, 244, 246, 248, 254, 255, 258, 265, 267, 270, 272, 274, 276, 281, 284, 289, 292, 294, 296
+Objective Value (calc): 283.163954
+sum_etaM = 279.400000 / 279.400000
+sum_etaP = 286.929775 / 286.927909
+nL: 100
+nCL: 0
+mCL: 1

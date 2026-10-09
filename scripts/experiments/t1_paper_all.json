@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "project": "MPCLP",
+  "datasets": [
+    "T1"
+  ],
+  "methods": [
+    "BnC-B",
+    "bBnC-I",
+    "bBnC-I+L",
+    "bBnC-I+E",
+    "bBnC-I+E+L"
+  ],
+  "parameter_grid": {
+    "theta": [
+      0.2,
+      0.5,
+      0.8
+    ]
+  },
+  "fixed_args": {
+    "time_limit": 3600,
+    "probability_function": "linear",
+    "co_location": true
+  },
+  "output_dir": "results/T1_Paper_All"
+}

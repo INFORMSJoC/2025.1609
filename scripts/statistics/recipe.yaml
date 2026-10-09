@@ -1,0 +1,360 @@
+# MPCLP paper-recipe source of truth.
+#
+# This file declares paper-facing intent only.  `build.py` translates it into
+# the figure contract that `render.py` consumes, after the awk programs in
+# `awk/` have computed the statistics of every figure.
+project: MPCLP IJOC-revision T2 review
+
+data:
+  t1_figure1:
+    source: figure1_t1.csv
+    solved:
+      field: status
+      values: [OPTIMAL]
+    checks:
+      required_columns: [instance, r, R, theta, method, status, runtime_seconds, end_gap_percent, solved]
+      unique_by: [instance, r, R, theta, method]
+      time_limit: 3600
+      time_limit_tolerance: 2
+
+  t2_figure2:
+    source: figure2_t2_colocation_loss.csv
+    checks:
+      required_columns: [instance, r, R, theta, p_s, i_count, k, k_over_i, k_ratio_group, k_ratio_selected, objective_coloc_on, objective_no_coloc, relative_objective_loss_pct, coloc_status, nocoloc_status]
+      unique_by: [instance, r, R, theta, p_s]
+      complete_grid:
+        r: [1, 2]
+        R: [20]
+        p_s: [1090, 5050, 9010]
+        theta: [0.01, 0.1, 0.2]
+
+  t2_figure3:
+    source: figure3_t2_colocation_metrics.csv
+    checks:
+      required_columns: [instance, r, R, theta, p_s, status, i_count, k, k_over_i, k_ratio_group, k_ratio_selected, ncl, nl, ncl_over_nl, ncl_over_nl_pct, mcl]
+      unique_by: [instance, r, R, theta, p_s]
+      complete_grid:
+        r: [1, 2]
+        R: [20]
+        p_s: [1090, 5050, 9010]
+        theta: [0.01, 0.1, 0.2]
+
+  t2_figure4:
+    source: figure4_t2_solver_profiles.csv
+    checks:
+      required_columns: [instance, r, R, theta, p_s, method, status, runtime_seconds, end_gap_percent]
+      unique_by: [instance, r, R, theta, p_s, method]
+      complete_grid:
+        r: [1, 2]
+        R: [20]
+        p_s: [1090, 5050, 9010]
+        theta: [0.01, 0.1, 0.2]
+        method: [B&C-I, B&C-NC-I, B&C-NC-B]
+      time_limit: 3600
+      time_limit_tolerance: 6
+
+  t2_figure5_gap:
+    source: figure5_t2_gap_improvement.csv
+    checks:
+      required_columns: [instance, r, R, theta, p_s, gap_improvement_percent]
+      unique_by: [instance, r, R, theta, p_s]
+      complete_grid:
+        r: [1, 2]
+        R: [20]
+        p_s: [1090, 5050, 9010]
+        theta: [0.01, 0.1, 0.2]
+
+  t2_figure5_time:
+    source: figure5_t2_time_profiles.csv
+    checks:
+      required_columns: [instance, r, R, theta, p_s, series, status, runtime_seconds]
+      unique_by: [instance, r, R, series, p_s]
+      time_limit: 3600
+      time_limit_tolerance: 6
+
+paper:
+  figures:
+    - id: Figure1-T1-Time-Profile
+      preset: censored_empirical_profile
+      input: t1_figure1
+      x: runtime_seconds
+      group: method
+      right_censoring: 3600
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [1, 3600]
+      x_ticks: [1, 10, 100, 1000, 3600]
+      x_tick_labels: ['$\mathbf{10^0}$', '$\mathbf{10^1}$', '$\mathbf{10^2}$', '$\mathbf{10^3}$', '$\mathbf{3600}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'CPU time [s]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure1-time
+      formats: [eps]
+
+    - id: Figure1-T1-Gap-Profile
+      preset: censored_empirical_profile
+      input: t1_figure1
+      x: end_gap_percent
+      group: method
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [0.01, 30]
+      x_ticks: [0.01, 0.1, 1, 10, 30]
+      x_tick_labels: ['$\mathbf{10^{-2}}$', '$\mathbf{10^{-1}}$', '$\mathbf{10^0}$', '$\mathbf{10}$', '$\mathbf{30}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'Gap [%]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure1-gap
+      formats: [eps]
+
+    - id: Figure2-T2-Objective-Loss-By-Theta
+      preset: censored_empirical_profile
+      input: t2_figure2
+      x: relative_objective_loss_pct
+      group: theta
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [0.01, 100]
+      x_ticks: [0.01, 0.1, 1, 5, 10, 100]
+      x_tick_labels: ['$\mathbf{10^{-2}}$', '$\mathbf{10^{-1}}$', '$\mathbf{10^0}$', '$\mathbf{5}$' ,'$\mathbf{10^1}$', '$\mathbf{10^2}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'Gap [%]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure2-theta
+      formats: [eps]
+
+    - id: Figure2-T2-Objective-Loss-By-Ps
+      preset: censored_empirical_profile
+      input: t2_figure2
+      x: relative_objective_loss_pct
+      group: p_s
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [0.01, 100]
+      x_ticks: [0.01, 0.1, 1, 5, 10, 100]
+      x_tick_labels: ['$\mathbf{10^{-2}}$', '$\mathbf{10^{-1}}$', '$\mathbf{10^0}$', '$\mathbf{5}$', '$\mathbf{10^1}$', '$\mathbf{10^2}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'Gap [%]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure2-ps
+      formats: [eps]
+
+    - id: Figure2-T2-Objective-Loss-By-K-Ratio
+      preset: censored_empirical_profile
+      input: t2_figure2
+      x: relative_objective_loss_pct
+      group: k_ratio_group
+      filter: {k_ratio_selected: selected}
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [0.01, 100]
+      x_ticks: [0.01, 0.1, 1, 5, 10, 100]
+      x_tick_labels: ['$\mathbf{10^{-2}}$', '$\mathbf{10^{-1}}$', '$\mathbf{10^0}$', '$\mathbf{5}$' ,'$\mathbf{10^1}$', '$\mathbf{10^2}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'Gap [%]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure2-k-ratio
+      formats: [eps]
+
+    - id: Figure3-T2-NCL-NL-By-Theta
+      preset: empirical_profile
+      input: t2_figure3
+      x: ncl_over_nl_pct
+      group: theta
+      y_unit: percentage
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: linear
+      x_limits: [0, 100]
+      x_ticks: [0, 25, 50, 75, 100]
+      x_tick_labels: ['0', '25', '50', '75', '100']
+      y_limits: [-5, 105]
+      y_ticks: [0, 25, 50, 75, 100]
+      labels: {x: 'nCL / nL [%]', y: '# Instances [%]'}
+      layout: &figure3_fixed_layout
+        tight: false
+        subplots_adjust: {left: 0.14, right: 0.95, bottom: 0.14, top: 0.98}
+      savefig: {transparent: true, bbox_inches: null, pad_inches: 0}
+      style: ijoc-figure3-theta
+      formats: [eps]
+
+    - id: Figure3-T2-NCL-NL-By-Ps
+      preset: empirical_profile
+      input: t2_figure3
+      x: ncl_over_nl_pct
+      group: p_s
+      y_unit: percentage
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: linear
+      x_limits: [0, 100]
+      x_ticks: [0, 25, 50, 75, 100]
+      x_tick_labels: ['0', '25', '50', '75', '100']
+      y_limits: [-5, 105]
+      y_ticks: [0, 25, 50, 75, 100]
+      labels: {x: 'nCL / nL [%]', y: '# Instances [%]'}
+      layout: *figure3_fixed_layout
+      savefig: {transparent: true, bbox_inches: null, pad_inches: 0}
+      style: ijoc-figure3-ps
+      formats: [eps]
+
+    - id: Figure3-T2-MCL-By-Theta
+      preset: grouped_categorical_histogram
+      input: t2_figure3
+      x: mcl
+      group: theta
+      categories: [1, 2, 3, 4, 5, 6, 7, 8]
+      bar_width: 0.22
+      normalization: percentage
+      y_limits: [0, 105]
+      y_ticks: [0, 25, 50, 75, 100]
+      labels: {x: 'mCL', y: '# Instances [%]'}
+      layout: *figure3_fixed_layout
+      savefig: {transparent: true, bbox_inches: null, pad_inches: 0}
+      style: ijoc-figure3-theta-histogram
+      formats: [eps]
+
+    - id: Figure3-T2-MCL-By-Ps
+      preset: grouped_categorical_histogram
+      input: t2_figure3
+      x: mcl
+      group: p_s
+      categories: [1, 2, 3, 4, 5, 6, 7, 8]
+      bar_width: 0.22
+      normalization: percentage
+      y_limits: [0, 105]
+      y_ticks: [0, 25, 50, 75, 100]
+      labels: {x: 'mCL', y: '# Instances [%]'}
+      layout: *figure3_fixed_layout
+      savefig: {transparent: true, bbox_inches: null, pad_inches: 0}
+      style: ijoc-figure3-ps-histogram
+      formats: [eps]
+
+    - id: Figure3-T2-NCL-NL-By-K-Ratio
+      preset: empirical_profile
+      input: t2_figure3
+      x: ncl_over_nl_pct
+      group: k_ratio_group
+      filter: {k_ratio_selected: selected}
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: linear
+      x_limits: [0, 100]
+      x_ticks: [0, 25, 50, 75, 100]
+      x_tick_labels: ['0', '25', '50', '75', '100']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'nCL / nL [%]', y: '# Instances [%]'}
+      layout: *figure3_fixed_layout
+      savefig: {transparent: true, bbox_inches: null, pad_inches: 0}
+      style: ijoc-figure3-k-ratio
+      formats: [eps]
+
+    - id: Figure3-T2-MCL-By-K-Ratio
+      preset: grouped_categorical_histogram
+      input: t2_figure3
+      x: mcl
+      group: k_ratio_group
+      filter: {k_ratio_selected: selected}
+      categories: [1, 2, 3, 4, 5, 6, 7, 8]
+      bar_width: 0.18
+      normalization: percentage
+      y_limits: [0, 105]
+      y_ticks: [0, 25, 50, 75, 100]
+      labels: {x: 'mCL', y: '# Instances [%]'}
+      layout: *figure3_fixed_layout
+      savefig: {transparent: true, bbox_inches: null, pad_inches: 0}
+      style: ijoc-figure3-k-ratio-histogram
+      formats: [eps]
+
+    - id: Figure4-T2-CPU-Time-Profile
+      preset: censored_empirical_profile
+      input: t2_figure4
+      x: runtime_seconds
+      group: method
+      right_censoring: 3600
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [1, 3600]
+      x_ticks: [1, 10, 100, 1000, 3600]
+      x_tick_labels: ['$\mathbf{10^0}$', '$\mathbf{10^1}$', '$\mathbf{10^2}$', '$\mathbf{10^3}$', '$\mathbf{3600}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'CPU time [s]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure4
+      formats: [eps]
+
+    - id: Figure4-T2-End-Gap-Profile
+      preset: censored_empirical_profile
+      input: t2_figure4
+      x: end_gap_percent
+      group: method
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [0.01, 30]
+      x_ticks: [0.01, 0.1, 1, 10, 30]
+      x_tick_labels: ['$\mathbf{10^{-2}}$', '$\mathbf{10^{-1}}$', '$\mathbf{10^0}$', '$\mathbf{10}$', '$\mathbf{30}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'Gap [%]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure4
+      formats: [eps]
+
+    - id: Figure5-T2-Gap-Improvement-Profile
+      preset: censored_empirical_profile
+      input: t2_figure5_gap
+      x: gap_improvement_percent
+      group: theta
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [0.1, 100]
+      x_ticks: [0.1, 1, 10, 25, 100]
+      x_tick_labels: ['$\mathbf{10^{-1}}$', '$\mathbf{10^0}$', '$\mathbf{10^1}$', '$\mathbf{25}$', '$\mathbf{10^2}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'Gap improvement [%]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure5-gap
+      formats: [eps]
+
+    - id: Figure5-T2-CPU-Time-Profile
+      preset: censored_empirical_profile
+      input: t2_figure5_time
+      x: runtime_seconds
+      group: series
+      right_censoring: 3600
+      profile_boundary: {start_at_xmin: true, extend_to_xmax: true, marker: false, clip_values_to_x_limits: true}
+      xscale: log
+      x_limits: [1, 3600]
+      x_ticks: [1, 10, 100, 1000, 3600]
+      x_tick_labels: ['$\mathbf{10^0}$', '$\mathbf{10^1}$', '$\mathbf{10^2}$', '$\mathbf{10^3}$', '$\mathbf{3600}$']
+      y_limits: [-0.05, 1.05]
+      y_ticks: [0, 0.25, 0.5, 0.75, 1]
+      y_tick_labels: ['0', '25', '50', '75', '100']
+      y_as_percent: false
+      labels: {x: 'CPU time [s]', y: '# Instances [%]'}
+      savefig: {transparent: true}
+      style: ijoc-figure5-time
+      formats: [eps]

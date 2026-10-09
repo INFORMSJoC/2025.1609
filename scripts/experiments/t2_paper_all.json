@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "project": "MPCLP",
+  "output_dir": "results/T2_Paper_All",
+  "experiment_blocks": [
+    {
+      "name": "four-settings-colocation",
+      "datasets": [
+        "T2"
+      ],
+      "methods": [
+        "bBnC-I",
+        "bBnC-I+L",
+        "bBnC-I+E",
+        "bBnC-I+E+L"
+      ],
+      "parameter_grid": {
+        "theta": [
+          0.01,
+          0.1,
+          0.2
+        ],
+        "mixture_low_share": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "fixed_args": {
+        "time_limit": 3600,
+        "probability_function": "facility_mixture",
+        "co_location": true,
+        "mixture_low_min": 0.001,
+        "mixture_low_max": 0.01,
+        "mixture_high_min": 0.1,
+        "mixture_high_max": 0.5,
+        "mixture_seed": 1
+      }
+    },
+    {
+      "name": "full-integer-no-colocation",
+      "datasets": [
+        "T2"
+      ],
+      "methods": [
+        "bBnC-I+E+L"
+      ],
+      "parameter_grid": {
+        "theta": [
+          0.01,
+          0.1,
+          0.2
+        ],
+        "mixture_low_share": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "fixed_args": {
+        "time_limit": 3600,
+        "probability_function": "facility_mixture",
+        "co_location": false,
+        "mixture_low_min": 0.001,
+        "mixture_low_max": 0.01,
+        "mixture_high_min": 0.1,
+        "mixture_high_max": 0.5,
+        "mixture_seed": 1
+      }
+    },
+    {
+      "name": "binary-no-colocation",
+      "datasets": [
+        "T2"
+      ],
+      "methods": [
+        "BnC-B"
+      ],
+      "parameter_grid": {
+        "theta": [
+          0.01,
+          0.1,
+          0.2
+        ],
+        "mixture_low_share": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "fixed_args": {
+        "time_limit": 3600,
+        "probability_function": "facility_mixture",
+        "co_location": false,
+        "mixture_low_min": 0.001,
+        "mixture_low_max": 0.01,
+        "mixture_high_min": 0.1,
+        "mixture_high_max": 0.5,
+        "mixture_seed": 1
+      }
+    },
+    {
+      "name": "kmedian",
+      "datasets": [
+        "T2"
+      ],
+      "methods": [
+        "Kmedian"
+      ],
+      "parameter_grid": {
+        "mixture_low_share": [
+          0.1,
+          0.5,
+          0.9
+        ]
+      },
+      "fixed_args": {
+        "theta": 1,
+        "time_limit": 3600,
+        "probability_function": "facility_mixture",
+        "co_location": true,
+        "mixture_low_min": 0.001,
+        "mixture_low_max": 0.01,
+        "mixture_high_min": 0.1,
+        "mixture_high_max": 0.5,
+        "mixture_seed": 1
+      }
+    }
+  ]
+}

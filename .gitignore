@@ -1,0 +1,88 @@
+# OS, editor, and language caches
+.DS_Store
+*.code-workspace
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.claude/
+.qoder/
+.mplconfig/
+
+# Generated solver and document artifacts
+*.stat
+*.out
+*.err
+*.log
+*.lp
+*.eps
+*.svg
+*.png
+*.pdf
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.toc
+
+# Local experiment evidence and generated outputs
+/archive/
+/runs/
+/output/
+/tmp/
+
+# Keep the compact summaries under results/summarized/ and, in this package,
+# the raw solver logs of results/T1 and results/T2 next to them, so the
+# summaries can be rebuilt from the logs they were produced from. A generated
+# command list stays out: the summarizer reads it as the runs the directory is
+# supposed to hold, and these logs predate the names it carries.
+/results/*
+!/results/README.md
+!/results/summarized/
+/results/summarized/*
+!/results/summarized/T1/
+/results/summarized/T1/*
+!/results/summarized/T1/summary.csv
+!/results/summarized/T2/
+/results/summarized/T2/*
+!/results/summarized/T2/summary.csv
+!/results/T1/
+!/results/T1/*.out
+/results/T1/cmd.sh
+!/results/T2/
+!/results/T2/*.out
+/results/T2/cmd.sh
+
+# Internal coordination, feedback, and historical audits
+/admin/
+/feedback/
+/experiment_log.md
+/reports/20*/
+/reports/ijoc_revision/
+
+
+# Internal/legacy publication staging files retained only in the private tree.
+/AllResults.tex
+/CompuResults*.tex
+/ref.bib
+/scripts.zip
+/submit_jobs*.sh
+/scripts/stat.sh
+/scripts/legacy/
+/scripts/report/
+/scripts/submit_*.sh
+/scripts/generate_facility_mixture_t2_missing_nocolocbin.sh
+/scripts/lib/common/csv_export.py
+/scripts/lib/common/plot_utils.py
+/scripts/lib/common/profile_plot_workflow.py
+/scripts/lib/mpclp/colocation_effects.py
+/scripts/lib/mpclp/export_github_csvs.py
+/scripts/lib/mpclp/plot_style.py
+/scripts/lib/mpclp/profile_plot.py
+/reports/profile_specs/
+/data/pmed.txt
+/scripts/experiments/t2_facility_mixture_bc_nc_b_supplement.json
+/scripts/experiments/t2_paper_all_0103*.json
