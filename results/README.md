@@ -23,6 +23,18 @@ The adapter layer under `scripts/statistics/` converts these summaries into
 the record-level CSVs used by the paper figures and tables. See
 `scripts/statistics/README.md` for commands and the exact artifact map.
 
+## Detailed instance-wise results
+
+`detailed/` holds the instance-wise exports behind Tables 3, 4 and 5 of the
+paper, with the objective values, upper bounds, cut counts and co-location
+statistics that the aggregated tables omit. They are the runs of the two
+summaries above, one line per instance and parameter setting: 240 lines over the
+40 instances of testset T1 and their six `(r, R, theta)` settings in
+`Table3_detailed.csv` and `Table4_detailed.csv`, and 720 lines over the 40
+instances of testset T2 and their 18 settings in `Table5_detailed.csv` and
+`T2_BnC-I_detailed.csv`. [detailed/README.md](detailed/README.md) documents the
+four files, their two-line header and every column.
+
 ## Raw logs
 
 `T1/` and `T2/` hold the solver logs the two summaries were built from, named

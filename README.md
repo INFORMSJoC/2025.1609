@@ -23,7 +23,7 @@ Below is the BibTex for citing this snapshot of the repository.
 
 ```
 @misc{WangChenLjubic2026,
-  author =        {Yan-Ru Wang, Wei-Kun Chen, and Ivana Ljubi{\'c}},
+  author =        {Yan-Ru Wang and Wei-Kun Chen and Ivana Ljubi{\'c}},
   publisher =     {INFORMS Journal on Computing},
   title =         {An efficient branch-and-cut algorithm for the multiple probabilistic covering location problem},
   year =          {2026},
@@ -43,7 +43,7 @@ figures and tables of the paper. The main folders are [src](src), [data](data),
 - [src](src): the Julia implementation of the model, the bound strengthening and the cut families, together with the command line entry point `src/mgclp.jl`.
 - [data](data): the instances used in the paper, the OR-Library p-median instances `pmed1`--`pmed40` and the coordinate instances `pmed41`--`pmed80`. Both formats, the source of every file and the citation to use are documented in [data/README.md](data/README.md); the OR-Library files are third-party data and are not covered by the MIT license of this repository.
 - [scripts](scripts): the public entrypoints for running, summarizing and rebuilding, including the experiment recipes in [scripts/experiments](scripts/experiments) and the artifact pipeline in [scripts/statistics](scripts/statistics).
-- [results](results): the compact record summaries of the two testsets, under `results/summarized/`, and the raw solver logs of `results/T1` and `results/T2` they were summarized from; this package ships both, so a summary can be rebuilt from its logs and checked here.
+- [results](results): the compact record summaries of the two testsets, under `results/summarized/`, and the raw solver logs of `results/T1` and `results/T2` they were summarized from; this package ships both, so a summary can be rebuilt from its logs and checked here. The instance-wise results behind Tables 3, 4 and 5 of the paper are in [results/detailed](results/detailed), with the objective values, upper bounds, cut counts and co-location statistics the aggregated tables omit.
 
 A rebuild writes its figures, tables and record exports to `output/artifacts/`,
 which is not versioned either. The published results that Tables 1 and 5 compare
